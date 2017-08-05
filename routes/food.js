@@ -11,6 +11,12 @@ module.exports = () =>{
       events = events.filter((event) => {
         return event.venue !== undefined;
       })
+
+      //sort by events that are soonest
+      events.sort((a,b) => {
+        return a.time - b.time
+      })
+
       res.send(events);
     })
   })
