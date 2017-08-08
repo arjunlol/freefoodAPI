@@ -1,6 +1,16 @@
 const express = require("express");
 const router  = express.Router();
 const meetups = require('./meetups')
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'http://localhost:5000/',
+  optionSuccessStatus: 200,
+  credentials: true
+}
+
+router.use(cors(corsOptions));
+
 module.exports = () =>{
   router.get("/:lat/:lon", (req, res) => {
     let lat = req.params.lat;
