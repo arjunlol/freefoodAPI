@@ -3,8 +3,16 @@ const router  = express.Router();
 const meetups = require('./meetups')
 const cors = require('cors');
 
+let whitelist = ['http://localhost:5000', 'https://arjunlol.github.io']
+
 const corsOptions = {
-  origin: 'http://localhost:5000',
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
   optionSuccessStatus: 200,
   credentials: true
 }
