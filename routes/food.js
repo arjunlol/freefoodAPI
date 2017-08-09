@@ -4,7 +4,7 @@ const meetups = require('./meetups')
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://arjunlol.github.io/',
+  origin: 'https://arjunlol.github.io',
   optionSuccessStatus: 200,
   credentials: true
 }
