@@ -12,12 +12,13 @@ const corsOptions = {
 router.use(cors(corsOptions));
 
 module.exports = () =>{
-  router.get("/:lat/:lon", (req, res) => {
+  router.get("/:type/:lat/:lon", (req, res) => {
+    let type = req.params.type;
     let lat = req.params.lat;
     let lon = req.params.lon;
-    meetups(lat,lon)
+    meetups(lat,lon, type)
     .then((events) => {
-      //filter events such that events without location/description removed
+      //filter events such that events without location/description are removed
       events = events.filter((event) => {
         return event.venue !== undefined;
       })
