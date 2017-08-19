@@ -7,6 +7,7 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
+//beer is food
 app.use("/food", foodRoutes());
 
 app.listen(PORT, () => {
