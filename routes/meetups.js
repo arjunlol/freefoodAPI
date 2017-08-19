@@ -3,12 +3,13 @@ require("dotenv").config();
 
 module.exports = (lat, lon, type) => {
   //set api signature according to food type, default to pizza
+  let sig = '';
   switch (type) {
     case 'beer':
-      let sig = 'dcdd168aa7b39ab2bd64ea44d54fc65cf02c152e';
+      sig = '1c1a039f4caddc573e3489c768b25c69cb2096b3';
       break;
     default:
-      let sig = '12cfedcce8cc8bb0db6ccb84a874de83fb102ed3';
+      sig = '12cfedcce8cc8bb0db6ccb84a874de83fb102ed3';
   }
   //want venue time, location, name from api call
   let options = {

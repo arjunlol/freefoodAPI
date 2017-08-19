@@ -16,7 +16,7 @@ module.exports = () =>{
     let type = req.params.type;
     let lat = req.params.lat;
     let lon = req.params.lon;
-    meetups(lat,lon, type)
+    meetups(lat,lon,type)
     .then((events) => {
       //filter events such that events without location/description are removed
       events = events.filter((event) => {
