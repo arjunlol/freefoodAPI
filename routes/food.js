@@ -3,8 +3,8 @@ const router  = express.Router();
 const meetups = require('./meetups')
 const cors = require('cors');
 
-//allow localhost:3000 origin for testing
-const whitelist = ['https://arjunlol.github.io', 'http://localhost:3000']
+//allow localhost:3000 origin for testing and 5000 port for served testing
+const whitelist = ['https://arjunlol.github.io', 'http://localhost:3000', 'http://localhost:5000']
 
 //configure cors with dynamic origin
 const corsOptions = {
@@ -30,8 +30,9 @@ module.exports = () =>{
     meetups(lat,lon,type)
     .then((events) => {
       //filter events such that events without location/description are removed
-      events = events.filter((event) => {
-        return event.venue !== undefined;
+      //and any duplicate events are removed
+      events = events.filter((event, index, self) => {
+        return event.venue !== undefined && index === self.indexOf(event);
       })
 
       //sort by events that are soonest
