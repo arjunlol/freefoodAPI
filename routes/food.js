@@ -30,9 +30,13 @@ module.exports = () =>{
     meetups(lat,lon,type)
     .then((events) => {
       //filter events such that events without location/description are removed
-      //and any duplicate events are removed
+      //and any duplicate event objects are removed
       events = events.filter((event, index, self) => {
-        return event.venue !== undefined && index === self.indexOf(event);
+        return event.venue !== undefined && index === self.findIndex((e) => {
+          //findIndex returns index of first element that satisfies below condition
+          //duplicates past first value's index don't match, and are filtered out
+          return e.name === event.name
+        });
       })
 
       //sort by events that are soonest
